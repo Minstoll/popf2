@@ -268,9 +268,13 @@ private:
 	TIMAnalyser * tan;
 	
 	Properties properties;
-
+	
 	template<class TI>
-	PropertyState(TIMAnalyser * t,TI s,TI e) : tan(t), properties(s,e) {};
+    PropertyState(TIMAnalyser * t,TI s,TI e) : tan(t) {
+            for (auto it=s; it != e; ++it) {
+                    properties.insert(*it);
+            }
+    }
 
 	template<class TI>
 	static PropertyState * retrieve(TIMAnalyser * tan,TI s,TI e)
